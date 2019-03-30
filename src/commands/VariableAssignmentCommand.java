@@ -14,14 +14,6 @@ public class VariableAssignmentCommand implements Command {
         this.symbolTable = symbolTable;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
     @Override
     public void execute(String[] arguments) {
         // get path from symbolTable

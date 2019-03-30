@@ -11,18 +11,10 @@ public class PrintCommand implements Command {
         this.server = server;
     }
 
-    public Server getServer() {
-        return server;
-    }
-
-    public void setServer(Server server) {
-        this.server = server;
-    }
 
     @Override
     public void execute(String[] arguments) {
-
-        // get variable from serverData
-        // print variable
+        // validate arguments
+        System.out.println(server.getData().get(arguments[1]));
     }
 }

@@ -3,8 +3,8 @@ package commands;
 import client.Client;
 import server.Server;
 
-import java.util.HashMap;
 import java.util.Map;
+
 
 public class CommandBuilder {
 
@@ -12,6 +12,13 @@ public class CommandBuilder {
     private Server server;
     private Client client;
     private Map<String, String> symbolTable;
+
+    public static final String OPEN_SERVER_COMMAND = "openDataServer";
+    public static final String CONNECT_COMMAND = "connect";
+    public static final String VARIABLE_ALLOCATION_COMMAND = "var";
+    public static final String ASSIGNMENT_COMMAND = "=";
+    public static final String WHILE_COMMAND = "while";
+    public static final String PRINT_COMMAND = "print";
 
 
     public CommandBuilder(Server server, Client client, Map<String, String> symbolTable) {
@@ -24,20 +31,20 @@ public class CommandBuilder {
     public Command getCommand(String key) {
 
         switch (key) {
-            case "openDataServer":
+            case OPEN_SERVER_COMMAND:
                 return new OpenDataServerCommand(server);
-            case "connect":
+            case CONNECT_COMMAND:
                 return new ConnectToClientCommand(client);
-            case "var":
+            case VARIABLE_ALLOCATION_COMMAND:
                 return new VariableDeclarationCommand(symbolTable);
-            case "=":
-                return new VariableAssignmentCommand(client);
-            case "while":
-                return new LoopCommand(symbolTable);
-            case "print":
+            case ASSIGNMENT_COMMAND:
+                return new VariableAssignmentCommand(client, symbolTable);
+            case WHILE_COMMAND:
+                return new LoopCommand(server, this);
+            case PRINT_COMMAND:
                 return new PrintCommand(server);
             default:
-                return null;
+                return new VariableAssignmentCommand(client, symbolTable);
         }
 
     }

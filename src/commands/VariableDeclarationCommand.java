@@ -10,16 +10,9 @@ public class VariableDeclarationCommand implements Command {
         this.symbolTable = symbolTable;
     }
 
-    public Map<String, String> getSymbolTable() {
-        return symbolTable;
-    }
-
-    public void setSymbolTable(Map<String, String> symbolTable) {
-        this.symbolTable = symbolTable;
-    }
-
     @Override
     public void execute(String[] arguments) {
-        // put variable in symbolTable
+        // validate arguments
+        symbolTable.put(arguments[1], arguments[4]);
     }
 }
