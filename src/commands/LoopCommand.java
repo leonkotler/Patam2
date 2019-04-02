@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 public class LoopCommand implements Command {
 
 
-    private CommandBuilder commandBuilder;
+    private CommandFactory commandFactory;
     private Server server;
 
 
-    public LoopCommand(Server server, CommandBuilder commandBuilder) {
+    public LoopCommand(Server server, CommandFactory commandFactory) {
         this.server = server;
-        this.commandBuilder = commandBuilder;
+        this.commandFactory = commandFactory;
     }
 
 
@@ -31,9 +31,8 @@ public class LoopCommand implements Command {
 
         List<String[]> listOfCommands = convertArgumentsToListOfCommands(Arrays.toString(arguments));
 
-
         while (condition(variable, operator, value)) {
-            listOfCommands.forEach(command -> commandBuilder.getCommand(command[0]).execute(command));
+            listOfCommands.forEach(command -> commandFactory.getCommand(command[0]).execute(command));
         }
 
     }

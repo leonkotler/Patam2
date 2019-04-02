@@ -11,7 +11,6 @@ public class Lexer {
     }
 
     public String[] processLine(String line) {
-
         if (inTheMiddleOfAWhileLoop) {
             // we are in a while loop block
             whileBlock.append(line).append(" \n ");
